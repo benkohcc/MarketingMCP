@@ -74,6 +74,14 @@ The agent closes with strategic observations that cut across all three segments:
 
 ---
 
+**Step 7 — Tool transparency**
+
+When asked *"what tools did you call to produce this analysis?"*, the agent recalls and explains all 5 tool calls in sequence — what each one revealed and how it shaped the output. This is the reasoning chain made visible: spending by education to establish tiers, spending by marital status to surface the Widow/Divorced anomaly, campaign performance to identify Cmp2 as a consistent underperformer, channel analysis to inform offer delivery, RFM to prioritise recency, and income-spend correlation to set the targeting threshold.
+
+![Step 7: Agent explains the 5 tool calls used to produce the campaign](docs/wine-scenario-7.png)
+
+---
+
 The agent called multiple tools, cross-referenced the outputs, and produced a fully reasoned, data-grounded campaign brief — from a single open question, with no scripted workflow.
 
 ---
@@ -205,6 +213,7 @@ MarketingMCP/
 │   ├── wine-scenario-3.png   # Segment 1: The Connoisseur
 │   ├── wine-scenario-4.png   # Segment 2: The Casual Enthusiast
 │   ├── wine-scenario-5.png   # Segment 3: The Price-Sensitive Buyer
-│   └── wine-scenario-6.png   # Cross-cutting recommendations
+│   ├── wine-scenario-6.png   # Cross-cutting recommendations
+│   └── wine-scenario-7.png   # Agent explains its tool call reasoning chain
 └── README.md
 ```
