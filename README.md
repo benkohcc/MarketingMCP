@@ -20,7 +20,7 @@ The agent decides which tools to call, in what sequence, and how to synthesize t
 
 ## Dataset
 
-`marketing_campaign.csv` — 2,239 customer records, 29 columns covering:
+`marketing_campaign.csv` — a sample dataset downloaded from [Kaggle](https://www.kaggle.com/datasets/imakash3011/customer-personality-analysis) (Customer Personality Analysis). It contains 2,239 customer records across 29 columns covering:
 
 | Category | Columns |
 |----------|---------|
