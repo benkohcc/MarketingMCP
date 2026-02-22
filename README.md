@@ -120,28 +120,63 @@ Cmd+Q (full quit) → reopen. The MCP server launches automatically at startup.
 
 ---
 
-## Example Prompts to Try
+## Example Scenario: Unscripted Wine Campaign Design
 
-```
-What marketing analysis tools do you have available?
-```
+The following walkthrough shows what unscripted agentic reasoning actually looks like in practice. No analysis was pre-written. The agent was given a single open prompt and used the MCP tools to work through the problem on its own.
 
-```
-Using the marketing tools, which education segment has the highest campaign
-response rate, and does their channel behaviour differ from lower-response segments?
-```
+**Prompt:** *"What is the average spending for wines? Design a marketing campaign with offers targeting these wine purchaser demographics. The offers should utilise information about average spend to optimize the offer type and value."*
 
-```
-Build me an RFM analysis, then cross-reference the top segment's campaign
-acceptance rate against the overall average. What does this tell us?
-```
+---
 
-```
-Is there a meaningful income-spend relationship in this dataset, and does it
-hold across different education levels?
-```
+**Step 1 — Spending breakdown by segment**
 
-The point is to ask open questions and watch the agent decide which tools to call, in what order, and how to connect the dots.
+The agent calls `get_spending_by_segment` to understand wine spend across education levels, discovering that PhD customers average $404/yr vs $7 for Basic education — a 56x gap that immediately shapes the segmentation strategy.
+
+![Step 1: Average wine spend by education segment](docs/wine-scenario-1.png)
+
+---
+
+**Step 2 — Campaign strategy overview**
+
+Rather than stopping at the numbers, the agent synthesises the spending data with income correlation and RFM scores to frame three distinct buyer personas worth targeting separately.
+
+![Step 2: Agent designs a three-segment Wine Lover Campaign Strategy](docs/wine-scenario-2.png)
+
+---
+
+**Step 3 — Segment 1: The Connoisseur**
+
+PhD/Master-educated customers (633 people, $333–$405 avg wine spend, high RFM tier). The agent designs a *Curated Reserve Case Program* — buy 6 bottles, get the 7th free — anchored to their actual $34/month spend threshold and their preference for catalog and in-store channels over discounts.
+
+![Step 3: Offer design for The Connoisseur segment](docs/wine-scenario-3.png)
+
+---
+
+**Step 4 — Segment 2: The Casual Enthusiast**
+
+Graduation-educated customers (1,707 people, $284–$307 avg wine spend, mid RFM tier). The agent designs a *Weekend Bundle Deal* — wine plus a complementary category at 15% off — timed to mid-week email to drive weekend store visits, mirroring the Cmp4/Cmp5 structure that performed best for this group.
+
+![Step 4: Offer design for The Casual Enthusiast segment](docs/wine-scenario-4.png)
+
+---
+
+**Step 5 — Segment 3: The Price-Sensitive Buyer**
+
+Basic/2n Cycle-educated customers (257 people, $7–$198 avg wine spend, low RFM tier). The agent designs an *Entry-Level Deal Activation* — a single-bottle flash deal, web-only, no bundle requirement — setting realistic expectations that a 5–6% response rate is already above their historical baseline.
+
+![Step 5: Offer design for The Price-Sensitive Buyer segment](docs/wine-scenario-5.png)
+
+---
+
+**Step 6 — Cross-cutting recommendations**
+
+The agent closes with strategic observations that cut across all three segments: prioritise high-recency customers (RFM R=3 hits 41.7% response), never replicate Cmp2 (1.3% overall), give Widow/Divorced customers their own creative, and use income as a targeting gate where possible.
+
+![Step 6: Cross-cutting recommendations across all segments](docs/wine-scenario-6.png)
+
+---
+
+The agent called multiple tools, cross-referenced the outputs, and produced a fully reasoned, data-grounded campaign brief — from a single open question, with no scripted workflow.
 
 ---
 
@@ -161,9 +196,15 @@ The point is to ask open questions and watch the agent decide which tools to cal
 ```
 MarketingMCP/
 ├── server.py                 # MCP server — all 7 tools
-├── marketing_campaign.csv    # Source dataset
+├── marketing_campaign.csv    # Source dataset (Kaggle)
 ├── requirements.txt          # mcp, pandas
 ├── docs/
-│   └── example.png           # Claude Desktop screenshot
+│   ├── example.png           # Claude Desktop tool listing screenshot
+│   ├── wine-scenario-1.png   # Wine spend by education segment
+│   ├── wine-scenario-2.png   # Three-segment campaign strategy
+│   ├── wine-scenario-3.png   # Segment 1: The Connoisseur
+│   ├── wine-scenario-4.png   # Segment 2: The Casual Enthusiast
+│   ├── wine-scenario-5.png   # Segment 3: The Price-Sensitive Buyer
+│   └── wine-scenario-6.png   # Cross-cutting recommendations
 └── README.md
 ```
