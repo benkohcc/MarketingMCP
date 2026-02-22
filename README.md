@@ -18,6 +18,66 @@ The agent decides which tools to call, in what sequence, and how to synthesize t
 
 ---
 
+## Example Scenario: Unscripted Wine Campaign Design
+
+The following walkthrough shows what unscripted agentic reasoning actually looks like in practice. No analysis was pre-written. The agent was given a single open prompt and used the MCP tools to work through the problem on its own.
+
+**Prompt:** *"What is the average spending for wines? Design a marketing campaign with offers targeting these wine purchaser demographics. The offers should utilise information about average spend to optimize the offer type and value."*
+
+---
+
+**Step 1 — Spending breakdown by segment**
+
+The agent calls `get_spending_by_segment` to understand wine spend across education levels, discovering that PhD customers average $404/yr vs $7 for Basic education — a 56x gap that immediately shapes the segmentation strategy.
+
+![Step 1: Average wine spend by education segment](docs/wine-scenario-1.png)
+
+---
+
+**Step 2 — Campaign strategy overview**
+
+Rather than stopping at the numbers, the agent synthesises the spending data with income correlation and RFM scores to frame three distinct buyer personas worth targeting separately.
+
+![Step 2: Agent designs a three-segment Wine Lover Campaign Strategy](docs/wine-scenario-2.png)
+
+---
+
+**Step 3 — Segment 1: The Connoisseur**
+
+PhD/Master-educated customers (633 people, $333–$405 avg wine spend, high RFM tier). The agent designs a *Curated Reserve Case Program* — buy 6 bottles, get the 7th free — anchored to their actual $34/month spend threshold and their preference for catalog and in-store channels over discounts.
+
+![Step 3: Offer design for The Connoisseur segment](docs/wine-scenario-3.png)
+
+---
+
+**Step 4 — Segment 2: The Casual Enthusiast**
+
+Graduation-educated customers (1,707 people, $284–$307 avg wine spend, mid RFM tier). The agent designs a *Weekend Bundle Deal* — wine plus a complementary category at 15% off — timed to mid-week email to drive weekend store visits, mirroring the Cmp4/Cmp5 structure that performed best for this group.
+
+![Step 4: Offer design for The Casual Enthusiast segment](docs/wine-scenario-4.png)
+
+---
+
+**Step 5 — Segment 3: The Price-Sensitive Buyer**
+
+Basic/2n Cycle-educated customers (257 people, $7–$198 avg wine spend, low RFM tier). The agent designs an *Entry-Level Deal Activation* — a single-bottle flash deal, web-only, no bundle requirement — setting realistic expectations that a 5–6% response rate is already above their historical baseline.
+
+![Step 5: Offer design for The Price-Sensitive Buyer segment](docs/wine-scenario-5.png)
+
+---
+
+**Step 6 — Cross-cutting recommendations**
+
+The agent closes with strategic observations that cut across all three segments: prioritise high-recency customers (RFM R=3 hits 41.7% response), never replicate Cmp2 (1.3% overall), give Widow/Divorced customers their own creative, and use income as a targeting gate where possible.
+
+![Step 6: Cross-cutting recommendations across all segments](docs/wine-scenario-6.png)
+
+---
+
+The agent called multiple tools, cross-referenced the outputs, and produced a fully reasoned, data-grounded campaign brief — from a single open question, with no scripted workflow.
+
+---
+
 ## Dataset
 
 `marketing_campaign.csv` — a sample dataset downloaded from [Kaggle](https://www.kaggle.com/datasets/imakash3011/customer-personality-analysis) (Customer Personality Analysis). It contains 2,239 customer records across 29 columns covering:
@@ -117,66 +177,6 @@ Use the **absolute path** to the venv Python — not `python3` — so the instal
 ### 5. Restart Claude Desktop
 
 Cmd+Q (full quit) → reopen. The MCP server launches automatically at startup.
-
----
-
-## Example Scenario: Unscripted Wine Campaign Design
-
-The following walkthrough shows what unscripted agentic reasoning actually looks like in practice. No analysis was pre-written. The agent was given a single open prompt and used the MCP tools to work through the problem on its own.
-
-**Prompt:** *"What is the average spending for wines? Design a marketing campaign with offers targeting these wine purchaser demographics. The offers should utilise information about average spend to optimize the offer type and value."*
-
----
-
-**Step 1 — Spending breakdown by segment**
-
-The agent calls `get_spending_by_segment` to understand wine spend across education levels, discovering that PhD customers average $404/yr vs $7 for Basic education — a 56x gap that immediately shapes the segmentation strategy.
-
-![Step 1: Average wine spend by education segment](docs/wine-scenario-1.png)
-
----
-
-**Step 2 — Campaign strategy overview**
-
-Rather than stopping at the numbers, the agent synthesises the spending data with income correlation and RFM scores to frame three distinct buyer personas worth targeting separately.
-
-![Step 2: Agent designs a three-segment Wine Lover Campaign Strategy](docs/wine-scenario-2.png)
-
----
-
-**Step 3 — Segment 1: The Connoisseur**
-
-PhD/Master-educated customers (633 people, $333–$405 avg wine spend, high RFM tier). The agent designs a *Curated Reserve Case Program* — buy 6 bottles, get the 7th free — anchored to their actual $34/month spend threshold and their preference for catalog and in-store channels over discounts.
-
-![Step 3: Offer design for The Connoisseur segment](docs/wine-scenario-3.png)
-
----
-
-**Step 4 — Segment 2: The Casual Enthusiast**
-
-Graduation-educated customers (1,707 people, $284–$307 avg wine spend, mid RFM tier). The agent designs a *Weekend Bundle Deal* — wine plus a complementary category at 15% off — timed to mid-week email to drive weekend store visits, mirroring the Cmp4/Cmp5 structure that performed best for this group.
-
-![Step 4: Offer design for The Casual Enthusiast segment](docs/wine-scenario-4.png)
-
----
-
-**Step 5 — Segment 3: The Price-Sensitive Buyer**
-
-Basic/2n Cycle-educated customers (257 people, $7–$198 avg wine spend, low RFM tier). The agent designs an *Entry-Level Deal Activation* — a single-bottle flash deal, web-only, no bundle requirement — setting realistic expectations that a 5–6% response rate is already above their historical baseline.
-
-![Step 5: Offer design for The Price-Sensitive Buyer segment](docs/wine-scenario-5.png)
-
----
-
-**Step 6 — Cross-cutting recommendations**
-
-The agent closes with strategic observations that cut across all three segments: prioritise high-recency customers (RFM R=3 hits 41.7% response), never replicate Cmp2 (1.3% overall), give Widow/Divorced customers their own creative, and use income as a targeting gate where possible.
-
-![Step 6: Cross-cutting recommendations across all segments](docs/wine-scenario-6.png)
-
----
-
-The agent called multiple tools, cross-referenced the outputs, and produced a fully reasoned, data-grounded campaign brief — from a single open question, with no scripted workflow.
 
 ---
 
