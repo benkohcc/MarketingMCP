@@ -116,6 +116,8 @@ The server exposes 7 analytical tools:
 
 Tools are intentionally **primitive and composable** — the agent combines them to answer complex questions rather than any single tool encoding a full analysis.
 
+For a detailed explanation of what each tool does internally, see [TOOLS.md](TOOLS.md).
+
 ---
 
 ## Architecture
