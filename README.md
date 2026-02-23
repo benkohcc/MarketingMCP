@@ -88,7 +88,7 @@ The agent called multiple tools, cross-referenced the outputs, and produced a fu
 
 ## Dataset
 
-`marketing_campaign.csv` — a sample dataset downloaded from [Kaggle](https://www.kaggle.com/datasets/imakash3011/customer-personality-analysis) (Customer Personality Analysis). It contains 2,239 customer records across 29 columns covering:
+`marketing_campaign.csv` — a sample dataset downloaded from [Kaggle](https://www.kaggle.com/datasets/rodsaldanha/arketing-campaign) (Marketing Campaign). It contains 2,239 customer records across 29 columns covering:
 
 | Category | Columns |
 |----------|---------|
